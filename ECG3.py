@@ -2,8 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import interpolate
 from scipy import signal
-
-
+import matplotlib.patches as mpatches
 def get_interpolation(time, signal, D):
     start = time[0]
     stop = time[-1]
@@ -15,7 +14,7 @@ def get_interpolation(time, signal, D):
 
 
 data = np.loadtxt('ЭКГ.txt', delimiter='\t', dtype=np.float64)
-data = data[174:574] #174-574; 574-1031; 1031-1313
+data = data[1031:1313] #174:574; 574:1031; 1031:1313
 filter = signal.firwin(10, [2, 70], fs=250, pass_zero=False)
 filtered = signal.lfilter(filter, 1.0, data[:, 0])
 trr = data[:, 1][data[:, 1] > 300]
@@ -46,9 +45,15 @@ plt.yticks(**ticks_font)
 plt.title('Дворников Глеб ВСР')
 plt.xlabel('Время, с', **label_font)
 plt.ylabel('R-R, мс', **label_font)
-plt.grid()
-plt.savefig("photo.png")
+plt.grid()#-158[174:574]-454[574:1031] - 753.5[1031:1313]
+plt.plot((data[:,0]/1000)-753.5, data[:,1],color='Red', marker='o', linewidth=2, markersize=5)
+#plt.savefig("photo.png")
 #print(filtered)
+
+
+red_patch = mpatches.Patch(color='red', label='Без фильтра')
+red_patch_2 = mpatches.Patch(color='#08787f', label='Фильтрованный')
+plt.legend(handles=[red_patch,red_patch_2])
 plt.show()
 M = np.mean(NN)
 print('среднее -', M)
