@@ -45,10 +45,10 @@ plt.yticks(**ticks_font)
 plt.title('Дворников Глеб ВСР')
 plt.xlabel('Время, с', **label_font)
 plt.ylabel('R-R, мс', **label_font)
-plt.grid()#-158[174:574]-454[574:1031] - 753.5[1031:1313]
+plt.grid()#-158[174:574]-454[574:1031] - 753.5[1031:1313]/////
 plt.plot((data[:,0]/1000)-753.5, data[:,1],color='Red', marker='o', linewidth=2, markersize=5)
 #plt.savefig("photo.png")
-#print(filtered)
+print(filtered)
 
 
 red_patch = mpatches.Patch(color='red', label='Без фильтра')

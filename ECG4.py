@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import scipy
 from scipy import signal
 
 data = np.loadtxt('ЭКГ.txt', delimiter='\t', dtype=np.float64)
-data = data #174:574; 574:1031; 1031:1313
+data = data[1031:1313] #174:574; 574:1031; 1031:1313
 filter = signal.firwin(10, [2, 70], fs=250, pass_zero=False)
 filtered = signal.lfilter(filter, 1.0, data[:, 0])
 trr = data[:, 1][data[:, 1] > 300]
