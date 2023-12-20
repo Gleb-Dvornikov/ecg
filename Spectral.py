@@ -29,7 +29,7 @@ def get_spectral_fourier(signal, D):
 
 
 
-data = np.loadtxt('Вылегжанин Григорий.txt', delimiter='\t', dtype=np.float64)
+data = np.loadtxt('ЭКГ.txt', delimiter='\t', dtype=np.float64)
 data = data[:400] #0-400; 450-900; 950-1325
 
 trr = data[:, 1][data[:, 1] > 300]
